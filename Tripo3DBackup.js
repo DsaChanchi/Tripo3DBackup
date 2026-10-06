@@ -17,7 +17,7 @@
 
     const UI_ID = 'tripo-backup-manager';
 
-    // NO CAMBIAR: ESCÁNER QUE ESTÁ ENCONTRANDO 801 MODELOS
+    // CONFIGURACIÓN DEL ESCÁNER
     const SCAN_CONFIG = {
         scrollWait: 1200,
         maxRounds: 400,
@@ -395,7 +395,7 @@
             UI_ID + '-restore';
 
         restore.textContent =
-            'Mostrar Tripo Backup';
+            'Mostrar Tripo Backup Manager';
 
         document.body.appendChild(panel);
         document.body.appendChild(restore);
@@ -1593,10 +1593,7 @@
         combo.focus();
 
         /*
-         * Importante:
-         * usamos la interacción del propio combobox.
-         * No hacemos una cadena de pointer events
-         * sobre la opción.
+         * Interacción del selector de formato.
          */
         combo.click();
 
@@ -1686,14 +1683,7 @@
         }
 
         /*
-         * El componente es un combobox real de Reka.
-         *
-         * No intentamos activar directamente el div
-         * [role=option] con .click(), porque ya está
-         * demostrado que eso no modifica el estado interno.
-         *
-         * Abrimos el menú y usamos el elemento combobox
-         * como punto de entrada para navegación.
+         * Gestión del selector de formato.
          */
 
         let listbox =
@@ -1752,20 +1742,13 @@
         );
 
         /*
-         * Cerramos/reabrimos el menú antes de la navegación
-         * para garantizar que el foco pertenece al combobox.
+         * Preparar el selector para la navegación.
          */
 
         combo.focus();
 
         /*
-         * Navegación absoluta:
-         * Home -> primera opción
-         * ArrowDown N veces -> posición solicitada
-         * Enter -> confirmar
-         *
-         * Esto evita depender de .click() sobre el
-         * elemento [role=option].
+         * Navegación por teclado para seleccionar el formato.
          */
 
         combo.dispatchEvent(
@@ -1825,8 +1808,7 @@
         );
 
         /*
-         * Esperar a que desaparezca el listbox o cambie
-         * el texto del combobox.
+         * Confirmar el cambio de formato.
          */
 
         const changed =
@@ -1869,9 +1851,7 @@
         }
 
         /*
-         * Si no cambió, el menú puede seguir abierto.
-         * Hacemos una única selección por foco directo de
-         * la opción mediante teclado, sin eventos de ratón.
+         * Intento alternativo de selección.
          */
 
         listbox =
@@ -1911,9 +1891,7 @@
                 () => {
 
                     const finalCombo =
-                        findFormatCombobox(
-                            dialog
-                        );
+                        findFormatCombobox(dialog);
 
                     if (!finalCombo) {
                         return null;
@@ -2241,8 +2219,7 @@
         }
 
         /*
-         * Cada formato vuelve al botón principal Export.
-         * Nunca reutilizamos el diálogo anterior.
+         * Cada exportación se inicia desde el botón principal.
          */
 
         const dialog =
