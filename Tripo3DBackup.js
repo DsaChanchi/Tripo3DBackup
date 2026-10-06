@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Tripo Studio Backup Manager v6.20
+// @name         Tripo Backup Manager
 // @namespace    https://studio.tripo3d.ai/
-// @version      6.20
 // @description  Escanea modelos de Tripo Studio y realiza backups.
+// @author       DsaChanchi - Troyano
 // @match        https://studio.tripo3d.ai/workspace/generate*
 // @grant        none
 // @run-at       document-idle
@@ -291,11 +291,7 @@
 
                 <div>
                     <span class="tb-title">
-                        Tripo Backup
-                    </span>
-
-                    <span class="tb-version">
-                        v6.20
+                        Tripo Backup Manager
                     </span>
                 </div>
 
@@ -2479,7 +2475,7 @@
     createUI();
 
     log(
-        'Tripo Backup Manager v6.20 cargado.'
+        'Tripo Backup Manager cargado.'
     );
 
 })();
